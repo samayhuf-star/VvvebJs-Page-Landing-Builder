@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Modern Page Builder with Drag and Drop">
+    <meta name="author" content="VvvebJs">
+    <link rel="icon" href="favicon.ico">
+    <base href="">
+    <title>Modern Page Builder - VvvebJs</title>
+
+    <link href="css/editor.css" rel="stylesheet">
+    <link href="css/modern-builder-theme.css" rel="stylesheet">
+</head>
+<body>
+    <div id="vvveb-builder">
+        <!-- Top Panel with Enhanced Modern UI -->
+        <div id="top-panel" class="modern-top-panel">
+            <div class="d-flex align-items-center">
+                <!-- Logo Section -->
+                <div class="logo-section px-3">
+                    <h1 class="logo-text mb-0">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" class="me-2">
+                            <rect width="32" height="32" rx="8" fill="url(#gradient)"/>
+                            <path d="M8 16L16 8L24 16L16 24L8 16Z" fill="white" opacity="0.9"/>
+                            <defs>
+                                <linearGradient id="gradient" x1="0" y1="0" x2="32" y2="32">
+                                    <stop offset="0%" stop-color="#667eea"/>
+                                    <stop offset="100%" stop-color="#764ba2"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                        Modern Builder
+                    </h1>
+                </div>
+
+                <!-- Layout Controls -->
+                <div class="btn-group mx-2" role="group">
+                    <button class="btn btn-modern" title="Toggle file manager" id="toggle-file-manager-btn"
+                            data-vvveb-action="toggleFileManager" data-bs-toggle="button">
+                        <i class="la la-folder"></i>
+                    </button>
+                    <button class="btn btn-modern" title="Toggle left panel" id="toggle-left-column-btn"
+                            data-vvveb-action="toggleLeftColumn" data-bs-toggle="button">
+                        <i class="la la-columns"></i>
+                    </button>
+                    <button class="btn btn-modern" title="Toggle right panel" id="toggle-right-column-btn"
+                            data-vvveb-action="toggleRightColumn" data-bs-toggle="button">
+                        <i class="la la-sidebar"></i>
+                    </button>
+                </div>
+
+                <!-- History Controls -->
+                <div class="btn-group mx-2" role="group">
+                    <button class="btn btn-modern" title="Undo (Ctrl/Cmd + Z)" id="undo-btn"
+                            data-vvveb-action="undo" data-vvveb-shortcut="ctrl+z">
+                        <i class="la la-undo"></i>
+                    </button>
+                    <button class="btn btn-modern" title="Redo (Ctrl/Cmd + Shift + Z)" id="redo-btn"
+                            data-vvveb-action="redo" data-vvveb-shortcut="ctrl+shift+z">
+                        <i class="la la-redo"></i>
+                    </button>
+                </div>
+
+                <!-- View Controls -->
+                <div class="btn-group mx-2" role="group">
+                    <button class="btn btn-modern" title="Designer Mode" id="designer-mode-btn"
+                            data-bs-toggle="button" data-vvveb-action="setDesignerMode">
+                        <i class="la la-hand-rock"></i>
+                    </button>
+                    <button class="btn btn-modern" title="Preview" id="preview-btn"
+                            data-bs-toggle="button" data-vvveb-action="preview">
+                        <i class="icon-eye-outline"></i>
+                    </button>
+                    <button class="btn btn-modern" title="Fullscreen (F11)" id="fullscreen-btn"
+                            data-bs-toggle="button" data-vvveb-action="fullscreen">
+                        <i class="icon-expand-outline"></i>
+                    </button>
+                    <button class="btn btn-modern active" title="Navigator" id="toggle-tree-list"
+                            data-bs-toggle="button" data-vvveb-action="toggleTreeList" aria-pressed="true">
+                        <i class="icon-layers-outline"></i>
+                    </button>
+                    <button class="btn btn-modern" title="Download" id="download-btn"
+                            data-vvveb-action="download" data-v-download="index.html">
+                        <i class="la la-download"></i>
+                    </button>
+                </div>
+
+                <!-- Right Side Controls -->
+                <div class="ms-auto d-flex align-items-center">
+                    <!-- Responsive Controls -->
+                    <div class="btn-group me-2" role="group">
+                        <button id="mobile-view" data-view="mobile" class="btn btn-modern"
+                                title="Mobile view" data-vvveb-action="viewport">
+                            <i class="la la-mobile"></i>
+                        </button>
+                        <button id="tablet-view" data-view="tablet" class="btn btn-modern"
+                                title="Tablet view" data-vvveb-action="viewport">
+                            <i class="la la-tablet"></i>
+                        </button>
+                        <button id="desktop-view" data-view="" class="btn btn-modern"
+                                title="Desktop view" data-vvveb-action="viewport">
+                            <i class="la la-laptop"></i>
+                        </button>
+                    </div>
+
+                    <!-- Zoom Control -->
+                    <div class="zoom-control me-3">
+                        <input type="number" id="zoom" value="100" step="10" min="10" max="100"
+                               class="form-control form-control-sm" data-vvveb-action="zoomChange" data-vvveb-on="change">
+                        <span class="zoom-label">%</span>
+                    </div>
+
+                    <!-- Theme Toggle -->
+                    <button class="btn btn-modern me-2" data-vvveb-action="darkMode" title="Toggle theme">
+                        <i class="la la-adjust"></i>
+                    </button>
+
+                    <!-- Save Button -->
+                    <button class="btn btn-primary btn-modern-save" title="Save (Ctrl + S)" id="save-btn"
+                            data-vvveb-action="saveAjax" data-vvveb-url="save.php">
+                        <span class="loading d-none">
+                            <span class="spinner-border spinner-border-sm me-2" role="status"></span>
+                            Saving...
+                        </span>
+                        <span class="button-text">
+                            <i class="icon-save-outline me-2"></i>Save
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Left Panel -->
+        <div id="left-panel" class="modern-panel">
+            <!-- File Manager -->
+            <div id="filemanager">
+                <div class="panel-header">
+                    <h6 class="mb-0"><i class="la la-file me-2"></i>Pages</h6>
+                    <button class="btn btn-sm btn-primary" title="New page" id="new-file-btn"
+                            data-vvveb-action="newPage">
+                        <i class="icon-add"></i>
+                    </button>
+                </div>
+                <div class="tree">
+                    <ol></ol>
+                </div>
+            </div>
+
+            <!-- Components Panel -->
+            <div class="drag-elements">
+                <div class="panel-header">
+                    <ul class="nav nav-tabs nav-fill modern-tabs" id="elements-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="sections-tab" data-bs-toggle="tab"
+                               href="#sections" role="tab" title="Sections">
+                                <i class="icon-layers-outline"></i>
+                                <span class="tab-label">Sections</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="components-tab" data-bs-toggle="tab"
+                               href="#components-tabs" role="tab" title="Components">
+                                <i class="icon-cube-outline"></i>
+                                <span class="tab-label">Components</span>
+                            </a>
+                        </li>
+                        <li class="nav-item component-properties-tab d-none">
+                            <a class="nav-link" id="properties-tab" data-bs-toggle="tab"
+                               href="#properties" role="tab" title="Properties">
+                                <i class="icon-settings-outline"></i>
+                                <span class="tab-label">Properties</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="configuration-tab" data-bs-toggle="tab"
+                               href="#configuration" role="tab" title="Styles">
+                                <i class="icon-color-wand-outline"></i>
+                                <span class="tab-label">Styles</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="tab-content">
+                    <!-- Sections Tab -->
+                    <div class="tab-pane show active sections" id="sections" role="tabpanel">
+                        <ul class="nav nav-tabs nav-fill sections-tabs" id="sections-tabs" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-bs-toggle="tab" href="#sections-new-tab" role="tab">
+                                    <i class="icon-albums-outline"></i><span>Library</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-bs-toggle="tab" href="#sections-list" role="tab">
+                                    <i class="icon-list-outline"></i><span>Page</span>
+                                </a>
+                            </li>
+                        </ul>
+
+                        <div class="tab-content">
+                            <div class="tab-pane show active" id="sections-new-tab">
+                                <div class="search">
+                                    <input class="form-control form-control-sm component-search"
+                                           placeholder="Search sections..." type="text">
+                                    <button class="clear-backspace">
+                                        <i class="la la-times"></i>
+                                    </button>
+                                </div>
+                                <div class="drag-elements-sidepane sidepane">
+                                    <div class="sections-container">
+                                        <div class="section-item" data-section="sections-html">
+                                            <div class="controls">
+                                                <button class="btn btn-sm btn-expand-all">
+                                                    <i class="la la-angle-down"></i>
+                                                </button>
+                                            </div>
+                                            <div class="header" data-section="sections-html">
+                                                <span class="text">Sections</span>
+                                            </div>
+                                            <div class="section" data-section="sections-html"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane" id="sections-list">
+                                <div class="drag-elements-sidepane sidepane">
+                                    <ol class="sections-list"></ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Components Tab -->
+                    <div class="tab-pane" id="components-tabs" role="tabpanel">
+                        <ul class="nav nav-tabs nav-fill sections-tabs" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-bs-toggle="tab" href="#components-tab" role="tab">
+                                    <i class="icon-cube-outline"></i><span>Components</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-bs-toggle="tab" href="#blocks-tab" role="tab">
+                                    <i class="icon-grid-outline"></i><span>Blocks</span>
+                                </a>
+                            </li>
+                        </ul>
+
+                        <div class="tab-content">
+                            <div class="tab-pane show active" id="components-tab">
+                                <div class="search">
+                                    <input class="form-control form-control-sm component-search"
+                                           placeholder="Search components..." type="text">
+                                    <button class="clear-backspace">
+                                        <i class="la la-times"></i>
+                                    </button>
+                                </div>
+                                <div class="drag-elements-sidepane sidepane">
+                                    <div class="components-container"></div>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane" id="blocks-tab">
+                                <div class="search">
+                                    <input class="form-control form-control-sm block-search"
+                                           placeholder="Search blocks..." type="text">
+                                    <button class="clear-backspace">
+                                        <i class="la la-times"></i>
+                                    </button>
+                                </div>
+                                <div class="drag-elements-sidepane sidepane">
+                                    <div class="blocks-container"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Properties Tab -->
+                    <div class="tab-pane" id="properties" role="tabpanel">
+                        <div class="component-properties-sidepane">
+                            <div class="component-name py-2 px-3 bg-light border-bottom">
+                                <span></span>
+                            </div>
+                            <div class="mt-2">
+                                <ul class="nav nav-tabs nav-fill property-tabs" role="tablist">
+                                    <li class="nav-item content-tab">
+                                        <a class="nav-link active" data-bs-toggle="tab" href="#content-tab" role="tab">
+                                            <i class="icon-document-text-outline"></i><span>Content</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item style-tab">
+                                        <a class="nav-link" data-bs-toggle="tab" href="#style-tab" role="tab">
+                                            <i class="icon-color-palette-outline"></i><span>Style</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item advanced-tab">
+                                        <a class="nav-link" data-bs-toggle="tab" href="#advanced-tab" role="tab">
+                                            <i class="icon-options-outline"></i><span>Advanced</span>
+                                        </a>
+                                    </li>
+                                </ul>
+
+                                <div class="tab-content">
+                                    <div class="tab-pane show active" id="content-tab">
+                                        <div class="property-content"></div>
+                                    </div>
+                                    <div class="tab-pane" id="style-tab">
+                                        <div class="property-style"></div>
+                                    </div>
+                                    <div class="tab-pane" id="advanced-tab">
+                                        <div class="property-advanced"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Configuration Tab -->
+                    <div class="tab-pane" id="configuration" role="tabpanel">
+                        <div class="component-configuration-sidepane">
+                            <ul class="nav nav-tabs nav-fill configuration-tabs" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-bs-toggle="tab" href="#variables-tab" role="tab">
+                                        <i class="icon-color-wand-outline"></i><span>Variables</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#css-tab" role="tab">
+                                        <i class="icon-code-outline"></i><span>CSS</span>
+                                    </a>
+                                </li>
+                            </ul>
+
+                            <div class="tab-content">
+                                <div class="tab-pane show active" id="variables-tab">
+                                    <div class="variables-content p-3"></div>
+                                </div>
+                                <div class="tab-pane" id="css-tab">
+                                    <div class="css-content"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Canvas Area -->
+        <div id="canvas">
+            <div id="iframe-wrapper">
+                <div class="loading-message">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p class="mt-3">Loading page builder...</p>
+                </div>
+
+                <div id="iframe-layer">
+                    <div id="highlight-box" class="modern-highlight">
+                        <div id="highlight-name"></div>
+                    </div>
+
+                    <div id="select-box" class="modern-select">
+                        <div id="wysiwyg-editor">
+                            <a id="bold-btn" href="" title="Bold">
+                                <i class="la la-bold"></i>
+                            </a>
+                            <a id="italic-btn" href="" title="Italic">
+                                <i class="la la-italic"></i>
+                            </a>
+                            <a id="underline-btn" href="" title="Underline">
+                                <i class="la la-underline"></i>
+                            </a>
+                            <a id="strike-btn" href="" title="Strikethrough">
+                                <i class="la la-strikethrough"></i>
+                            </a>
+                            <a id="link-btn" href="" title="Create link">
+                                <i class="la la-link"></i>
+                            </a>
+                        </div>
+
+                        <div id="select-actions" class="modern-select-actions">
+                            <a href="#" class="btn-action" title="Drag element" id="drag-btn">
+                                <i class="la la-arrows"></i>
+                            </a>
+                            <a href="#" class="btn-action" title="Parent" id="parent-btn">
+                                <i class="la la-level-up-alt"></i>
+                            </a>
+                            <a href="#" class="btn-action" title="Move up" id="up-btn">
+                                <i class="la la-arrow-up"></i>
+                            </a>
+                            <a href="#" class="btn-action" title="Move down" id="down-btn">
+                                <i class="la la-arrow-down"></i>
+                            </a>
+                            <a href="#" class="btn-action" title="Edit code" id="code-btn">
+                                <i class="la la-code"></i>
+                            </a>
+                            <a href="#" class="btn-action" title="Clone" id="clone-btn">
+                                <i class="la la-copy"></i>
+                            </a>
+                            <a href="#" class="btn-action" title="Delete" id="delete-btn">
+                                <i class="la la-trash"></i>
+                            </a>
+                        </div>
+
+                        <div class="resize">
+                            <div class="top-left"></div>
+                            <div class="top-center"></div>
+                            <div class="top-right"></div>
+                            <div class="center-left"></div>
+                            <div class="center-right"></div>
+                            <div class="bottom-left"></div>
+                            <div class="bottom-center"></div>
+                            <div class="bottom-right"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <iframe src="" id="iframe1"></iframe>
+            </div>
+
+            <div id="breadcrumb-navigator" class="modern-breadcrumb">
+                <ol class="breadcrumb"></ol>
+            </div>
+        </div>
+
+        <!-- Right Panel -->
+        <div id="right-panel" class="modern-panel">
+            <div class="panel-header">
+                <h6 class="mb-0"><i class="icon-layers-outline me-2"></i>Navigator</h6>
+            </div>
+            <div class="tree-list">
+                <ol class="tree"></ol>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.hotkeys.js"></script>
+    <script src="libs/builder/libs.js"></script>
+
+    <!-- Builder -->
+    <script src="libs/builder/builder.js"></script>
+    <script src="libs/builder/undo.js"></script>
+    <script src="libs/builder/inputs.js"></script>
+
+    <!-- Components -->
+    <script src="libs/builder/components-bootstrap5.js"></script>
+    <script src="libs/builder/components-elements.js"></script>
+    <script src="libs/builder/components-embeds.js"></script>
+    <script src="libs/builder/components-html.js"></script>
+    <script src="libs/builder/components-widgets.js"></script>
+    <script src="libs/builder/components-bootstrap4.js"></script>
+    <script src="libs/builder/components-common.js"></script>
+
+    <!-- Sections & Blocks -->
+    <script src="libs/builder/section.js"></script>
+
+    <!-- Plugins -->
+    <script src="libs/builder/plugin-codemirror.js"></script>
+
+    <!-- Modern Components & Enhancements -->
+    <script src="libs/builder/components-modern.js"></script>
+    <script src="libs/builder/modern-drag-feedback.js"></script>
+
+    <script>
+        // Initialize with modern landing page
+        let pages = [
+            {
+                name: "modern-landing",
+                title: "Modern Landing Page",
+                url: "demo/modern-landing/index.html",
+                file: "demo/modern-landing/index.html"
+            }
+        ];
+
+        $(document).ready(function() {
+            // Initialize builder
+            Vvveb.Builder.init(pages[0]["url"], function() {
+                console.log('Modern Page Builder loaded!');
+            });
+
+            // Initialize UI
+            Vvveb.Gui.init();
+            Vvveb.FileManager.init();
+            Vvveb.SectionList.init();
+            Vvveb.Breadcrumb.init();
+
+            // Load pages
+            Vvveb.FileManager.addPages(pages);
+            Vvveb.FileManager.loadPage(pages[0]["name"]);
+
+            // Add welcome message
+            setTimeout(() => {
+                console.log('%c🚀 Modern Page Builder Ready!',
+                    'color: #667eea; font-size: 20px; font-weight: bold;');
+                console.log('%cDrag and drop components to start building!',
+                    'color: #764ba2; font-size: 14px;');
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
