@@ -256,7 +256,7 @@ function viewSleep(){
   <p class="tip">💡 ${tip}</p>
   <h2 class="hd">Log last night</h2>
   <form id="sleepform" class="card form"><div class="grid2"><label>Bedtime<input type="time" name="bed" value="${cur.bed||'23:00'}" required></label><label>Wake-up<input type="time" name="wake" value="${cur.wake||'07:00'}" required></label></div>
-  <label>Sleep quality <output id="qout">${cur.q||3}</output>/5<input type="range" name="q" min="1" max="5" value="${cur.q||3}"></label>
+  <label><span>Sleep quality: <output id="qout">${cur.q||3}</output>/5</span><input type="range" name="q" min="1" max="5" value="${cur.q||3}"></label>
   <button class="btn">Save</button></form>`;
 }
 
