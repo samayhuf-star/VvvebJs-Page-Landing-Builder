@@ -189,7 +189,7 @@ function viewPlan(){
 
 /* ---------- Exercise detail modal (also reused by the player) ---------- */
 function exerciseBody(ex){
-  return `<div class="stage" id="stage"></div>${muscleMap(ex)}<div class="chips">${chips(ex)}</div>
+  return `<div class="stage" id="stage"></div><div class="legend"><i class="k1"></i>Primary <i class="k2"></i>Secondary</div><div class="chips">${chips(ex)}</div>
   <ol class="cues">${ex.cues.map(c=>`<li>${esc(c)}</li>`).join('')}</ol>${ex.tip ? `<p class="tip">💡 ${esc(ex.tip)}</p>` : ''}`;
 }
 function openExercise(id){

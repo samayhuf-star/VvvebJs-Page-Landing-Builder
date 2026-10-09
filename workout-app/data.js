@@ -51,10 +51,13 @@ const EXERCISES = [
     cues:['Elbows under shoulders','Straight line head to heels','Squeeze glutes and abs; do not let hips sag'] },
   { id:'climber', name:'Mountain Climber', pat:'climber', focus:'cardio', eq:'none', lvl:1, unit:'sec', r:[30,45], p:['abs','quads'], s:['shoulders','obliques'],
     cues:['Hands under shoulders, body straight','Drive knees to chest alternately','Keep hips low and the pace brisk'] },
+  { id:'jacks', name:'Jumping Jacks', pat:'jack', focus:'cardio', eq:'none', lvl:1, unit:'sec', r:[30,45], p:['shoulders','quads'], s:['calves','abs','glutes'],
+    cues:['Jump feet wide while arms sweep overhead','Jump back to feet together, arms down','Stay light on the balls of your feet','Keep a steady rhythm'] },
   { id:'highknees', name:'High Knees', pat:'run', focus:'cardio', eq:'none', lvl:1, unit:'sec', r:[30,45], p:['quads','calves'], s:['abs','glutes'],
     cues:['Drive knees to hip height','Pump the arms','Land softly on the balls of your feet'] },
 ];
 
+/* names used in chips */
 const MUSCLE_NAMES = { chest:'Chest', shoulders:'Shoulders', biceps:'Biceps', triceps:'Triceps', forearms:'Forearms',
   abs:'Abs', obliques:'Obliques', quads:'Quads', calves:'Calves', traps:'Traps', lats:'Lats',
   lowerback:'Lower back', glutes:'Glutes', hamstrings:'Hamstrings' };
