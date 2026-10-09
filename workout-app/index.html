@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>FitCoach - Your Personal Trainer</title>
+<meta name="description" content="A personal trainer in your pocket: adaptive workouts with animated demos, calorie and sleep tracking.">
+<meta name="theme-color" content="#0f1115">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main id="view"></main>
+<nav aria-label="Main">
+  <button data-tab="today"><span>🏠</span>Today</button>
+  <button data-tab="plan"><span>📅</span>Plan</button>
+  <button data-tab="eat"><span>🥗</span>Eat</button>
+  <button data-tab="sleep"><span>😴</span>Sleep</button>
+  <button data-tab="me"><span>👤</span>Me</button>
+</nav>
+<div id="modal" class="modal" hidden></div>
+<div id="player" class="player" hidden></div>
+<div id="timerbar" class="timerbar" hidden></div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<script src="data.js"></script>
+<script src="body.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
