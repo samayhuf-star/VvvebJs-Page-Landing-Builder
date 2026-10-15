@@ -45,11 +45,8 @@
       "typedRoutes": false
     },
     "extra": {
-      "router": {},
-      "eas": {
-        "projectId": "000d6997-ba0e-49d7-b41b-6442b5b8fce9"
-      }
+      "router": {}
     },
-    "owner": "kroszs-team"
+    "owner": "krosz"
   }
 }
