@@ -60,4 +60,9 @@ You need an [Expo account](https://expo.dev), an **Apple Developer** account ($9
   Answer the App Store "Data Not Collected" nutrition label and the Play Data safety form accordingly (re-check if you add analytics).
 - **Category:** Travel. **Age rating:** 4+ / Everyone.
 - **Listing copy (draft):** *"Visara — check visa requirements, transit rules, documents, fees and your 90/180-day Schengen allowance in one beautifully simple app."*
-- Add a support URL and a privacy-policy URL (both stores require them).
+- **Policy URLs (live on Vercel, public):** the pages in `policies/` are deployed as the `visara-policies` project.
+  - Privacy Policy: https://visara-policies.vercel.app/privacy
+  - Terms of Use: https://visara-policies.vercel.app/terms
+  - Support URL: https://visara-policies.vercel.app/support
+  
+  Paste these into App Store Connect (Privacy Policy URL, Support URL) and Play Console (Privacy policy). They are also linked from the in-app About screen (`src/lib/links.ts`).

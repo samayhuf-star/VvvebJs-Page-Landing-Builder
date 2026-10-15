@@ -1,15 +1,23 @@
 import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Linking, StyleSheet, Text, View } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
 import { Card } from '@/components/Card';
+import { PressableScale } from '@/components/PressableScale';
 import { Screen } from '@/components/Screen';
+import { LINKS } from '@/lib/links';
 import { accents, colors } from '@/theme';
 
 const BLOCKS = [
   { icon: 'shield-checkmark', title: 'Privacy first', body: 'Visara has no accounts, no ads and no trackers. Your passport choice, checklist progress and trips are stored only on your device.' },
   { icon: 'alert-circle', title: 'Guidance, not legal advice', body: 'Entry rules change without notice and depend on your personal circumstances. Visara is an informational tool — always confirm with the official embassy, consulate or government portal and your airline before travelling.' },
   { icon: 'library', title: 'About the data', body: 'Requirements, fees and processing times are indicative and kept in one editable data layer, so they can be updated or connected to a live API. Items flagged “double-check” are policies that have been changing recently.' },
+] as const;
+
+const LEGAL = [
+  { label: 'Privacy Policy', url: LINKS.privacy, icon: 'lock-closed' },
+  { label: 'Terms of Use', url: LINKS.terms, icon: 'document-text' },
+  { label: 'Support', url: LINKS.support, icon: 'help-buoy' },
 ] as const;
 
 export default function About() {
@@ -26,6 +34,15 @@ export default function About() {
           </Card>
         </Animated.View>
       ))}
+      <Card style={{ padding: 6 }}>
+        {LEGAL.map((l) => (
+          <PressableScale key={l.label} onPress={() => Linking.openURL(l.url).catch(() => {})} scaleTo={0.98} style={styles.link} accessibilityRole="link">
+            <Ionicons name={l.icon} size={20} color={accents.visa} />
+            <Text style={styles.linkText}>{l.label}</Text>
+            <Ionicons name="open-outline" size={16} color={colors.muted} />
+          </PressableScale>
+        ))}
+      </Card>
     </Screen>
   );
 }
@@ -33,5 +50,7 @@ export default function About() {
 const styles = StyleSheet.create({
   row: { flexDirection: 'row', alignItems: 'center', gap: 10, marginBottom: 8 },
   title: { color: colors.text, fontSize: 17, fontWeight: '800' },
+  link: { flexDirection: 'row', alignItems: 'center', gap: 12, padding: 14 },
+  linkText: { flex: 1, color: colors.text, fontSize: 16, fontWeight: '700' },
   body: { color: colors.muted, fontSize: 14.5, lineHeight: 22 },
 });
