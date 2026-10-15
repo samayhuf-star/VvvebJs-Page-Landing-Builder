@@ -15,12 +15,12 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.visara.app",
+      "bundleIdentifier": "com.visatools.app",
       "buildNumber": "1",
       "infoPlist": { "ITSAppUsesNonExemptEncryption": false }
     },
     "android": {
-      "package": "com.visara.app",
+      "package": "com.visatools.app",
       "versionCode": 1,
       "adaptiveIcon": {
         "backgroundColor": "#0B1020",

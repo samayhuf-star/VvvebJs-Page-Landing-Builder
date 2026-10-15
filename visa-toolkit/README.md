@@ -42,7 +42,7 @@ by OTA updates) — no screen code needs to change.
 
 You need an [Expo account](https://expo.dev), an **Apple Developer** account ($99/yr) and a **Google Play Console** account ($25 once).
 
-1. Change the identifiers in `app.json`: `ios.bundleIdentifier` and `android.package` (currently `com.visara.app`) to ones you own.
+1. Change the identifiers in `app.json`: `ios.bundleIdentifier` and `android.package` (currently `com.visatools.app`) to ones you own.
 2. `npm i -g eas-cli && eas login && eas init` (links the project and writes the `projectId` into `app.json`).
 3. Build:
    ```bash
